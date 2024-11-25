@@ -8,6 +8,7 @@
 
 int largura = 80, altura = 20;
 int velocidade = 100;
+int i, j;
 
 typedef struct
 {
@@ -23,9 +24,9 @@ typedef struct
 
 void ordenaRecordes(PilhaRecordes* pilha)
 {
-    for (int i = 0; i < pilha->quantidade - 1; i++)
+    for (i = 0; i < pilha->quantidade - 1; i++)
     {
-        for (int j = 0; j < pilha->quantidade - i - 1; j++)
+        for (j = 0; j < pilha->quantidade - i - 1; j++)
         {
             if (pilha->recordes[j].tempo > pilha->recordes[j + 1].tempo)
             {
@@ -79,7 +80,7 @@ void salvarRecordes(PilhaRecordes* pilha)
         return;
     }
 
-    for (int i = 0; i < pilha->quantidade; i++)
+    for (i = 0; i < pilha->quantidade; i++)
     {
         fwrite(&pilha->recordes[i], sizeof(Recorde), 1, arquivo);
     }
@@ -99,7 +100,7 @@ void exibirRecordes(PilhaRecordes* pilha)
     else
     {
         ordenaRecordes(pilha);
-        for (int i = 0; i < pilha->quantidade; i++)
+        for (i = 0; i < pilha->quantidade; i++)
         {
             printf("%d. Nome: %s\n", i + 1, pilha->recordes[i].nome);
             printf("   Tempo: %.2f segundos\n", pilha->recordes[i].tempo);
@@ -128,7 +129,7 @@ void salvarPontuacao(double tempo_decorrido, PilhaRecordes* pilha)
     }
     else
     {
-        for (int i = MAX_RECORDS - 1; i >= 1; i--)
+        for (i = MAX_RECORDS - 1; i >= 1; i--)
         {
             pilha->recordes[i] = pilha->recordes[i - 1];
         }
@@ -138,10 +139,10 @@ void salvarPontuacao(double tempo_decorrido, PilhaRecordes* pilha)
     salvarRecordes(pilha);
 
     printf("Registro de recorde adicionado com sucesso!\n");
-    getchar(); // Espera o usu�rio pressionar Enter para continuar
+    getchar(); // Espera o usuario pressionar Enter para continuar
 }
 
-// Defini��o da estrutura para armazenar as posi��es (x, y) da cobrinha
+// Definindo da estrutura para armazenar as posi??es (x, y) da cobrinha
 typedef struct {
     int x;
     int y;
@@ -150,7 +151,7 @@ typedef struct {
 void salvarTrajetoJogo(Posicao trajeto[], int contador, int tamanhoCobrinha) {
     FILE* arquivo = fopen("trajeto_jogo.txt", "w");
     if (arquivo != NULL) {
-        for (int i = 0; i < contador; i++) {
+        for (i = 0; i < contador; i++) {
             fprintf(arquivo, "%d,%d,%d\n", trajeto[i].x, trajeto[i].y, tamanhoCobrinha);
         }
         fclose(arquivo);
@@ -206,7 +207,7 @@ int gameOver(int tam, int x[], int y[] )
 {
     int game=0;
 
-    for(int i=3; i<tam; i++)
+    for(i=3; i<tam; i++)
     {
         if(x[0]==x[i]&& y[0]==y[i])
         {
@@ -226,12 +227,12 @@ void snake(int x[100], int y[100], int tam, char direcao)   //desenha a cobrinha
 
 
 
-    for(int i=2; i<tam; i++) //desenha o corpo
+    for(i=2; i<tam; i++) //desenha o corpo
     {
         posicao(x[i], y[i]);
         printf("%c", 219);
     }
-    for(int i=tam; i>1; i--)  //atualiza as posi�oes do corpo
+    for(i=tam; i>1; i--)  //atualiza as posicoes do corpo
     {
         x[i]=x[i-1];
         y[i]=y[i-1];
@@ -270,18 +271,6 @@ void refazerTrajetoJogo(int tamanhoTrajeto,Posicao trajeto[]) {
 
 
 }
-
-  //  for (int i = 0; i < contador; i++) {
-  //      snake(trajeto[i].x, trajeto[i].y); // Chame a fun��o 'snake' para imprimir a cobra na posi��o correta
-   // }
-
-
-
-
-
-
-
-
 
 char tecla(char direcao)
 {
@@ -497,7 +486,7 @@ void exibirMenu(PilhaRecordes* recordes, int tamanhoTrajeto, Posicao trajeto[])
                     switch (tecla)
                     {
                     case '1':
-                        velocidade = 100;  // Velocidade f�cil
+                        velocidade = 100;  // Velocidade f?cil
                         system("cls");
                         posicao(10,(altura/2)-6);
                         printf("Selecionado nivel: Facil");
@@ -508,7 +497,7 @@ void exibirMenu(PilhaRecordes* recordes, int tamanhoTrajeto, Posicao trajeto[])
                         break;
 
                     case '2':
-                        velocidade = 50;  // Velocidade m�dia
+                        velocidade = 50;  // Velocidade m?dia
                         system("cls");
                         posicao(10,(altura/2)-6);
                         printf("Selecionado nivel: Medio");
@@ -520,7 +509,7 @@ void exibirMenu(PilhaRecordes* recordes, int tamanhoTrajeto, Posicao trajeto[])
                         break;
 
                     case '3':
-                        velocidade = 25;  // Velocidade dif�cil
+                        velocidade = 25;  // Velocidade dif?cil
                         system("cls");
                         posicao(10,(altura/2)-6);
                         printf("Selecionado nivel: Dificil");
@@ -581,7 +570,7 @@ void exibirMenu(PilhaRecordes* recordes, int tamanhoTrajeto, Posicao trajeto[])
 
 int main()
 {
-    int tamanhoTrajeto = 100000;  // Defina o tamanho m�ximo do trajeto aqui
+    int tamanhoTrajeto = 100000;  // Defina o tamanho maximo do trajeto aqui
     Posicao trajeto[tamanhoTrajeto];
 
     int opcao;
@@ -614,7 +603,7 @@ int main()
 
 
 
-        x[0]=30;    //[0] posi��o antiga
+        x[0]=30;    //[0] posicao antiga
         y[0]=15;
 
         x[1]=x[0];  //[1] posicao nova
@@ -631,12 +620,12 @@ int main()
 
         while(over==0)
         {
-            // Simula��o do trajeto da cobrinha (exemplo)
+            // Simula o do trajeto da cobrinha (exemplo)
             Posicao posicaoAtual;
             posicaoAtual.x = x[1];
             posicaoAtual.y = y[1];
 
-             // Adicione a posi��o atual ao trajeto
+             // Adicione a posicao atual ao trajeto
             trajeto[contador] = posicaoAtual;
             contador++;
 
